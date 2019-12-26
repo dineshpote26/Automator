@@ -20,7 +20,6 @@ public abstract class AutomatorDatabase extends RoomDatabase {
         if (instance == null){
             instance = Room.databaseBuilder(context,AutomatorDatabase.class,"automator_list")
                     .fallbackToDestructiveMigration()
-                    .addCallback(roomCallback)
                     .build();
         }
         return instance;
