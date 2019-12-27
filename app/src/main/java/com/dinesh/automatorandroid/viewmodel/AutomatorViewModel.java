@@ -113,12 +113,13 @@ public class AutomatorViewModel extends AndroidViewModel {
             diff = d2.getTime() - d1.getTime();
 
             Log.d("dinesh","diff="+diff);
+            Log.d("dinesh","diff min="+TimeUnit.MILLISECONDS.toMinutes(diff));
 
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        PeriodicWorkRequest.Builder workRequest = new PeriodicWorkRequest.Builder(AutomatorWorker.class,diff,TimeUnit.MILLISECONDS);
+        PeriodicWorkRequest.Builder workRequest = new PeriodicWorkRequest.Builder(AutomatorWorker.class,TimeUnit.MILLISECONDS.toMinutes(diff),TimeUnit.MINUTES);
         PeriodicWorkRequest myWork = workRequest.build();
         mWorkManager.enqueueUniquePeriodicWork("jobTag", ExistingPeriodicWorkPolicy.KEEP, myWork);
     }
